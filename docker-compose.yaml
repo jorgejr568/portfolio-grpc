@@ -1,0 +1,9 @@
+services:
+  statsd:
+    image: statsd/statsd:latest
+    ports:
+      - 8125:8125/udp
+    volumes:
+      - ./statsd.toml:/etc/statsd.toml
+    command: ["/bin/statsd", "/etc/statsd.toml"]
+    

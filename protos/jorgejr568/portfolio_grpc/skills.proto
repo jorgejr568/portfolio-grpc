@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package jorgejr568.portfolio_grpc;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/jorgejr568/portfolio-grpc/gen/go/jorgejr568/portfolio_grpc";
+
+message Skill {
+  message Category {
+    int64 id = 1;
+    string title = 2;
+  }
+
+  int64 id = 1;
+  string title = 2;
+  int32 level = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message GetAllSkillsRequest {}
+
+message GetAllSkillsResponse {
+  repeated Skill skills = 1;
+}
+
+message GetSkillRequest {
+  int64 id = 1;
+}
+message GetSkillResponse {
+  Skill skill = 1;
+}

@@ -1,0 +1,410 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "jorgejr568/portfolio_grpc/api.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "PortfolioService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/educations": {
+      "get": {
+        "summary": "Educations",
+        "operationId": "PortfolioService_GetAllEducations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/portfolio_grpcGetAllEducationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    },
+    "/v1/educations/{id}": {
+      "get": {
+        "operationId": "PortfolioService_GetEducation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/portfolio_grpcGetEducationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    },
+    "/v1/experiences": {
+      "get": {
+        "summary": "Experiences",
+        "operationId": "PortfolioService_GetAllExperiences",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/portfolio_grpcGetAllExperiencesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    },
+    "/v1/experiences/{id}": {
+      "get": {
+        "operationId": "PortfolioService_GetExperience",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/portfolio_grpcGetExperienceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    },
+    "/v1/skills": {
+      "get": {
+        "summary": "Skills",
+        "operationId": "PortfolioService_GetAllSkills",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/portfolio_grpcGetAllSkillsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    },
+    "/v1/skills/{id}": {
+      "get": {
+        "operationId": "PortfolioService_GetSkill",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/portfolio_grpcGetSkillResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "PortfolioService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "EducationInstitution": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "ExperienceCompany": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "portfolio_grpcEducation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "institution": {
+          "$ref": "#/definitions/EducationInstitution"
+        },
+        "startedAt": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "endedAt": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "portfolio_grpcExperience": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "company": {
+          "$ref": "#/definitions/ExperienceCompany"
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "startedAt": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "endedAt": {
+          "$ref": "#/definitions/typeDate"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "portfolio_grpcGetAllEducationsResponse": {
+      "type": "object",
+      "properties": {
+        "educations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/portfolio_grpcEducation"
+          }
+        }
+      }
+    },
+    "portfolio_grpcGetAllExperiencesResponse": {
+      "type": "object",
+      "properties": {
+        "experiences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/portfolio_grpcExperience"
+          }
+        }
+      }
+    },
+    "portfolio_grpcGetAllSkillsResponse": {
+      "type": "object",
+      "properties": {
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/portfolio_grpcSkill"
+          }
+        }
+      }
+    },
+    "portfolio_grpcGetEducationResponse": {
+      "type": "object",
+      "properties": {
+        "education": {
+          "$ref": "#/definitions/portfolio_grpcEducation"
+        }
+      }
+    },
+    "portfolio_grpcGetExperienceResponse": {
+      "type": "object",
+      "properties": {
+        "experience": {
+          "$ref": "#/definitions/portfolio_grpcExperience"
+        }
+      }
+    },
+    "portfolio_grpcGetSkillResponse": {
+      "type": "object",
+      "properties": {
+        "skill": {
+          "$ref": "#/definitions/portfolio_grpcSkill"
+        }
+      }
+    },
+    "portfolio_grpcSkill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "typeDate": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without\na year."
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a\nmonth and day."
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0\nto specify a year by itself or a year and month where the day isn't\nsignificant."
+        }
+      },
+      "description": "* A full date, with non-zero year, month, and day values\n* A month and day value, with a zero year, such as an anniversary\n* A year on its own, with zero month and day values\n* A year and month value, with a zero day, such as a credit card expiration\ndate\n\nRelated types are [google.type.TimeOfDay][google.type.TimeOfDay] and\n`google.protobuf.Timestamp`.",
+      "title": "Represents a whole or partial calendar date, such as a birthday. The time of\nday and time zone are either specified elsewhere or are insignificant. The\ndate is relative to the Gregorian Calendar. This can represent one of the\nfollowing:"
+    }
+  }
+}

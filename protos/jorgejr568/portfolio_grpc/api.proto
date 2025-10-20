@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package jorgejr568.portfolio_grpc;
+
+import "google/api/annotations.proto";
+import "jorgejr568/portfolio_grpc/skills.proto";
+import "jorgejr568/portfolio_grpc/experiences.proto";
+import "jorgejr568/portfolio_grpc/educations.proto";
+
+option go_package = "github.com/jorgejr568/portfolio-grpc/gen/go/jorgejr568/portfolio_grpc";
+
+service PortfolioService {
+  // Skills
+  rpc GetAllSkills(GetAllSkillsRequest) returns (GetAllSkillsResponse) {
+    option (google.api.http) = {get: "/v1/skills"};
+  }
+
+  rpc GetSkill(GetSkillRequest) returns (GetSkillResponse) {
+    option (google.api.http) = {get: "/v1/skills/{id}"};
+  }
+
+  // Experiences
+  rpc GetAllExperiences(GetAllExperiencesRequest) returns (GetAllExperiencesResponse) {
+    option (google.api.http) = {get: "/v1/experiences"};
+  }
+
+  rpc GetExperience(GetExperienceRequest) returns (GetExperienceResponse) {
+    option (google.api.http) = {get: "/v1/experiences/{id}"};
+  }
+
+  // Educations
+  rpc GetAllEducations(GetAllEducationsRequest) returns (GetAllEducationsResponse) {
+    option (google.api.http) = {get: "/v1/educations"};
+  }
+
+  rpc GetEducation(GetEducationRequest) returns (GetEducationResponse) {
+    option (google.api.http) = {get: "/v1/educations/{id}"};
+  }
+}

@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package jorgejr568.portfolio_grpc;
+
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+option go_package = "github.com/jorgejr568/portfolio-grpc/gen/go/jorgejr568/portfolio_grpc";
+
+message Experience {
+  message Company {
+    string name = 1;
+    string url = 2;
+    string logo_url = 3;
+  }
+
+  int64 id = 1;
+  string title = 2;
+  string description = 3;
+  Company company = 4;
+  repeated string technologies = 5;
+  google.type.Date started_at = 6;
+  google.type.Date ended_at = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message GetAllExperiencesRequest {}
+
+message GetAllExperiencesResponse {
+  repeated Experience experiences = 1;
+}
+
+message GetExperienceRequest {
+  int64 id = 1;
+}
+
+message GetExperienceResponse {
+  Experience experience = 1;
+}
